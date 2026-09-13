@@ -54,10 +54,16 @@ nav {
     position: relative;
 }
 
+.titulo-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(2px, 0.4vw, 6px);
+}
+
 .logo {
     text-decoration: none;
     font-family: var(--fuente-secundaria);
-    font-size: clamp(1.75rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 2.5vw, 1.8rem);
     font-weight: 600;
     color: var(--color-texto);
     list-style-type: none;
@@ -66,6 +72,12 @@ nav {
 .logo>span {
     color: var(--color-enfasis-hard);
 
+}
+
+.logo-ma {
+    width: clamp(45px, 4vw, 60px);
+    height: clamp(45px, 4vw, 60px);
+    object-fit: contain;
 }
 
 nav>ul {
@@ -98,6 +110,24 @@ nav>ul a.active {
     display: flex;
     gap: clamp(12px, 2vw, 24px);
     margin-left: clamp(30px, 4vw, 60px);
+    align-items: center;
+
+}
+
+.redes a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-size: clamp(0.9rem, 1.2vw, 1rem)
+}
+
+.links-sm span:hover {
+    border-bottom: 2px solid var(--color-enfasis-hard);
+    border-radius: 4px;
+}
+
+.icono-sm {
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    color: var(--color-enfasis-hard);
 }
 
 /* para que el burgermenu no se vea */
@@ -287,10 +317,23 @@ footer {
 }
 
 footer h2 {
-    padding-bottom: clamp(28px, 3vw, 45px);
+   
     color: var(--color-texto);
 }
 
+footer .cabeceraContacto {
+     padding-bottom: clamp(28px, 3vw, 45px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1vw, 16px);
+}
+
+footer .cabeceraContacto .logo-ma {
+    width: clamp(45px, 4vw, 60px);
+    height: clamp(45px, 4vw, 60px);
+    object-fit: contain;
+}
 
 .contactoContenido {
     margin: 0 auto;
@@ -367,30 +410,30 @@ footer h2 {
 
 
 .volver-arriba {
-position: fixed;
-right: clamp(20px, 3vw, 40px);
-bottom: clamp(20px, 3vw, 40px);
-width: 42px;
-height: 42px;
-display: flex;
-align-items: center;
-justify-content: center;
-color: var(--color-enfasis-hard);
-background-color: var(--color-fondo-claro);
-text-decoration: none;
-font-size: 1.8rem;
-font-weight: 400;
-border: 1px solid var(--color-enfasis-soft);
-border-radius: 50%;
-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-opacity: 0.8;
-transition: opacity 0.3s ease, transform 0.3s ease;
-padding-bottom: 4px;
+    position: fixed;
+    right: clamp(20px, 3vw, 40px);
+    bottom: clamp(20px, 3vw, 40px);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-enfasis-hard);
+    background-color: var(--color-fondo-claro);
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 400;
+    border: 1px solid var(--color-enfasis-soft);
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    padding-bottom: 4px;
 }
 
 .volver-arriba:hover {
-opacity: 1;
-transform: translateY(-3px);
+    opacity: 1;
+    transform: translateY(-3px);
 }
 
 
@@ -398,9 +441,14 @@ transform: translateY(-3px);
 
 /* @media (max-width: 1460px) {} */
 
+@media (max-width: 1080px) {
+    .logo {
+        display: none;
+    }
+}
 
 
-@media (max-width: 952px) {
+@media (max-width: 840px) {
 
 
     /* BURGERMENU */
@@ -444,7 +492,6 @@ transform: translateY(-3px);
         top: 24px;
     }
 
-
     /* ====== ANIMACIÓN A X ====== */
 
     .burger.activo span:nth-child(1) {
@@ -475,7 +522,6 @@ transform: translateY(-3px);
 
     #menu.activo {
         display: grid;
-
         /* esto es para que el menu pueda hacer scroll mientras el body no lo hace */
         overflow: auto;
         max-height: 50vh;
@@ -504,10 +550,8 @@ transform: translateY(-3px);
         position: absolute;
         left: 0;
         bottom: -4px;
-
         width: 0;
         height: 2px;
-
         background-color: var(--color-texto);
         transition: width .3s ease; */
     }
@@ -517,18 +561,25 @@ transform: translateY(-3px);
     }
 
     .redes {
-        flex-direction: column;
-        gap: 18px;
-        margin-left: 0;
+        display: flex;
+
+        margin-left: auto;
+        margin-right: clamp(18px, 3vw, 30px);
+        gap: 8px;
         align-items: center;
     }
 
-    .redes a:first-child {
-        width: fit-content;
-        position: relative;
+    .links-sm span {
+        display: none;
     }
 
-  
+    .icono-sm {
+        font-size: 30px;
+        align-self: stretch;
+    }
+
+
+
     /* esta clase es para que el body no haga scroll cuando tengo el burgermenu abierto */
 
     .no-scroll {
@@ -538,9 +589,75 @@ transform: translateY(-3px);
     .titulo-nav {
         display: flex;
         align-items: center;
-        gap: 18px;
-        color: var(--color-texto);
+        gap: 6px;
+
     }
+
+
+    /* MAIN */
+
+    #inicio {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-contenido {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-botonera {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+
+    /* SECCIONES */
+
+    .grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #experiencia {
+        order: 1;
+    }
+
+    #skills {
+        order: 2;
+    }
+
+    #sobreMi {
+        order: 4;
+    }
+
+    #formacion {
+        order: 3;
+    }
+
+    .contactoContenido {
+        text-align: center;
+    }
+
+    .contactoContenido ul {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 20px;
+        align-items: center;
+        justify-items: cemter;
+    }
+
+    .contactoContenido li {
+        text-align: center;
+        align-self: center;
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+
 
 }
 

@@ -412,24 +412,38 @@ for (let i = 0; i < cv[5].via.length; i++) {
 
   let enlace = "";
 
-  if (cv[5].via[i].tipo === "Mail") {
-    enlace = '<a href="mailto:' + cv[5].via[i].valor + '">' + cv[5].via[i].valor + '</a>';
-  } else if (cv[5].via[i].tipo === "Teléfono") {
-    enlace = '<a href="tel:' + cv[5].via[i].valor + '">' + cv[5].via[i].valor + '</a>';
+  if (cv[5].via[i].tipo === "Mail"){
+    enlace = `<a href="mailto:${cv[5].via[i].valor}">
+    ${cv[5].via[i].valor}
+    </a>`;
+
+  } else if (cv[5].via[i].tipo === "Teléfono"){
+    enlace = `<a href ="tel:${cv[5].via[i].valor}">
+    ${cv[5].via[i].valor}
+    </a>`;
   } else {
-    enlace = '<a href="' + cv[5].via[i].valor + '" target="_blank">' + cv[5].via[i].valor + '</a>';
+    enlace = `<a href = "${cv[5].via[i].valor}" target = "_blank">
+    ${cv[5].via[i].valor}
+    </a>`;
   }
-  via += '<li>' +
-    '<span>' + cv[5].via[i].tipo + '</span>' +
-    enlace +
-    '</li>';
-}
 
-const templateContacto = '<h2>' + cv[5].titulo + '</h2>' +
-  '<div class="contactoContenido">' +
-  '<ul>' + via + '</ul>' +
-  '</div>';
+  via += `<li>
+  <span>${cv[5].via[i].tipo}</span>
+  ${enlace}
+  </li>`;
+  }
 
+ 
+const templateContacto = `
+<div class ="cabeceraContacto">
+<img class="logo-ma" src="img/iconoLogoTransp.png" alt="icono de Mercedes Antón" title="icono Mercedes Antón">
+<h2>${cv[5].titulo}</h2>
+</div>
+
+<div class= "contactoContenido">
+<ul>${via}</ul>
+</div>
+`
 contacto.innerHTML = templateContacto;
 
 
