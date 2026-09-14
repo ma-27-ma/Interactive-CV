@@ -2,6 +2,37 @@
 
 "use strict";
 
+// Para crear el cambio de modo oscuro/claro
+const btnDM = document.getElementById("btnDM")
+const mode = btnDM.querySelector("i")
+const body = document.body
+
+//RESETEAR EL MODO: uso localStorage.getItem. Lo escribo arriba, aunque cronológicamente he creado primero el local.Storage.setItem
+
+const modoGuardado = localStorage.getItem("mode")
+if (modoGuardado === "true") {
+  body.classList.add("dark-mode")
+  mode.classList.add("bi-sun")
+  btnDM.setAttribute("aria-label", "Activar modo claro")
+}
+
+btnDM.addEventListener("click", () => {
+
+  body.classList.toggle("dark-mode")
+  mode.classList.toggle("bi-sun")
+
+  //RECORDAR EL MODO: uso localStorage.setItem para que la página recuerde el modo elegido al recargarla, pero también necesitaré que recupere el modo guardado después de actualizar la página
+  localStorage.setItem("mode", body.classList.contains("dark-mode"))
+
+  if (body.classList.contains("dark-mode")) {
+
+    btnDM.setAttribute("aria-label", "Activar modo claro")
+  } else {
+    btnDM.setAttribute("aria-label", "Activar modo oscuro")
+  }
+
+})
+
 // vale, empecemos con el cv dinámico, para ello quiero crear un array de objetos
 // es decir, quiero crear un array en el que estén todas las secciones
 // y cada seccion tenga los diferentes apartados (objetos)
@@ -371,30 +402,6 @@ proyectos.innerHTML = templateProyectos;
 
 
 
-
-
-
-
-// const contacto = document.getElementById("contacto");
-
-// let via = ""
-
-// for (let i = 0; i < cv[5].via.length; i++) {
-
-//   via += `<li> 
-//   <span>${cv[5].via[i].tipo}</span>
-//   <a href="${cv[5].via[i].valor}" target="_blank">${cv[5].via[i].valor}</a>
-//   </li>`;
-// }
-
-// const templateContacto = `<h2>${cv[5].titulo}</h2>
-// <div class = "contactoContenido">
-// <ul>${via}</ul>
-// </div>`;
-
-// contacto.innerHTML = templateContacto
-
-
 const contacto = document.getElementById("contacto");
 
 let via = "";
@@ -412,12 +419,12 @@ for (let i = 0; i < cv[5].via.length; i++) {
 
   let enlace = "";
 
-  if (cv[5].via[i].tipo === "Mail"){
+  if (cv[5].via[i].tipo === "Mail") {
     enlace = `<a href="mailto:${cv[5].via[i].valor}">
     ${cv[5].via[i].valor}
     </a>`;
 
-  } else if (cv[5].via[i].tipo === "Teléfono"){
+  } else if (cv[5].via[i].tipo === "Teléfono") {
     enlace = `<a href ="tel:${cv[5].via[i].valor}">
     ${cv[5].via[i].valor}
     </a>`;
@@ -431,9 +438,9 @@ for (let i = 0; i < cv[5].via.length; i++) {
   <span>${cv[5].via[i].tipo}</span>
   ${enlace}
   </li>`;
-  }
+}
 
- 
+
 const templateContacto = `
 <div class ="cabeceraContacto">
 <img class="logo-ma" src="img/iconoLogoTransp.png" alt="icono de Mercedes Antón" title="icono Mercedes Antón">
@@ -454,7 +461,7 @@ const btnBurger = document.querySelector(".burger")
 
 btnBurger.addEventListener("click", abrirBurger);
 
-function abrirBurger(){
+function abrirBurger() {
   menu.classList.toggle("activo");
   document.body.classList.toggle("no-scroll");
   btnBurger.classList.toggle("activo");
